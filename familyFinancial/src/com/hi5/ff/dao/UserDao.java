@@ -26,7 +26,7 @@ public class UserDao {
 		}
 		return true;
 	}
-	
+
 	//test
 	public static void main(String args[]){
 		User user = new User("tom","f");
