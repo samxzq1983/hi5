@@ -1,37 +1,44 @@
 package com.hi5.ff.entity;
 
 public class User {
-	private String userId;
+	private int userId;
+	private String useName;
 	private String password;
-	private String  profileId;
-	public User() {
-		super();
-	}
-	
-	public String getUserId() {
+	private int  profileId;
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
-	public User(String profileId, String password) {
-		super();
-		this.profileId = profileId;
-		this.password = password;
+	public String getUseName() {
+		return useName;
 	}
-	public String getProfileId() {
-		return profileId;
+
+	public void setUseName(String useName) {
+		this.useName = useName;
 	}
-	public void setProfileId(String profileId) {
-		this.profileId = profileId;
-	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public int getProfileId() {
+		return profileId;
+	}
+
+	public void setProfileId(int profileId) {
+		this.profileId = profileId;
+	}
+
+
+
+
+
 }

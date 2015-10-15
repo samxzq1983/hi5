@@ -8,30 +8,47 @@ import com.hi5.ff.util.SQLUtil;
 import com.hi5.ff.entity.User;
 
 public class UserDao {
-	public boolean IsExist(User user){
-		String userId=user.getUserId();
-		String profileId = user.getProfileId();
-		String password = user.getPassword();
-		String sql = "select * from user where userid='"+userId+"' and password='"+password+"' and profileid='"+profileId+"'";
-		ResultSet rs = SQLUtil.executeQuery(sql);
+//	public boolean IsExist(User user){
+//		int userId=user.getUserId();
+//		String profileId = user.getProfileId();
+//		String password = user.getPassword();
+//		String sql = "select * from user where userid='"+userId+"' and password='"+password+"' and profileid='"+profileId+"'";
+//		ResultSet rs = SQLUtil.executeQuery(sql);
+//		try{
+//		if(rs.next()){
+//			userId = rs.getInt(userId);
+//		}
+//		rs.close();
+//		}catch(SQLException e){
+//			e.printStackTrace();
+////			userId=0;
+//			return false;
+//		}
+//		return true;
+//	}
+
+	public User getUser(String userName, String password){
+
+		User user = null;
+
+		String sql = "select * from user where user_name=? and user_password=?";
+		String[] args = {userName,password};
+		ResultSet rs = SQLUtil.executePreparedQuery(sql, args);
 		try{
-		if(rs.next()){
-			userId = rs.getString(userId);
-		}
-		rs.close();
+			if(rs.next()){
+				user = new User();
+				user.setUserId(rs.getInt("user_id"));
+				user.setProfileId(rs.getInt("profile_id"));
+				user.setUseName(rs.getString("user_name"));
+				user.setPassword(rs.getString("user_password"));
+			}
+			rs.close();
 		}catch(SQLException e){
-			//e.printStackTrace();
-			userId="";
-			return false;
+			e.printStackTrace();
 		}
-		return true;
+		return user;
+
+
 	}
 
-	//test
-	public static void main(String args[]){
-		User user = new User("tom","f");
-		UserDao userDao = new UserDao();
-		boolean flag = userDao.IsExist(user);
-		System.out.println(flag);
-	}
 }

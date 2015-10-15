@@ -28,5 +28,17 @@ public class FFProperties {
 
 	}
 
+	public static String[] getProfiles(){
+		String[] result = null;
+		if(prop == null){
+			new FFProperties();
+		}
+		String profileStr = prop.getProperty("PROFILE");
+		if(profileStr!=null && profileStr.trim().length()>0){
+			result = profileStr.split(",");
+		}
+		return result;
+	}
+
 
 }

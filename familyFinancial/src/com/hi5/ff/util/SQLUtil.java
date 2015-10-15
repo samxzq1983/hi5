@@ -2,6 +2,7 @@ package com.hi5.ff.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,8 +25,6 @@ public class SQLUtil {
 			return null;
 		}
 		try{
-
-
 			String url=FFProperties.getProperties().getProperty("URL");
 			String user=FFProperties.getProperties().getProperty("USER");;
 			String paw=FFProperties.getProperties().getProperty("PASSWORD");;
@@ -38,7 +37,38 @@ public class SQLUtil {
 		return conn;
 	}
 
+	public static void closeConnection(){
+		if(conn!=null)
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
 
+	public static ResultSet executePreparedQuery(String sql, String[] args) {
+		getConnection();
+		if(conn==null){
+			System.out.println(" ");
+			return null;
+		}
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try{
+			pstmt = conn.prepareStatement(sql);
+			for(int i=1;i<=args.length;i++){
+				pstmt.setString(i, args[i-1]);
+			}
+			rs = pstmt.executeQuery();
+
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+
+		return rs;
+
+	}
 
 	public static ResultSet executeQuery(String sql){
 		getConnection();

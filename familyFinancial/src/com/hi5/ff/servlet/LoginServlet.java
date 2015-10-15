@@ -21,21 +21,17 @@ public class LoginServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		String userid = req.getParameter("userid");
+		String userName = req.getParameter("userName");
 		String password = req.getParameter("password");
-		String profileid = req.getParameter("profileid");
 		UserDao userDao = new UserDao();
-		boolean isExist = userDao.IsExist(new User(userid,password));
-		if(isExist){
-			User user = new User(userid,password);
-			user.setUserId(userid);
-			req.setAttribute("user",user);
-			req.setAttribute("userid", userid);
+		//boolean isExist = userDao.IsExist(new User(userName, password));
+		User user = userDao.getUser(userName, password);
+		if(user!=null){
 			req.getSession().setAttribute("user",user);
-			req.getRequestDispatcher("SearchOrderList").forward(req, resp);
+			req.getRequestDispatcher("User.jsp").forward(req, resp);
 		}else{
 			resp.sendRedirect("Login.jsp");
 		}
 	}
-	
+
 }
