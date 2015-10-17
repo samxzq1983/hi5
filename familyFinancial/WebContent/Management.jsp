@@ -52,15 +52,16 @@
 				</a>
 				<ul class="children collapse" id="sub-item-1">
 					<li>
-						<a class="" href="User.jsp">
+						<a class="" href="Profile.jsp">
 							<span class="glyphicon glyphicon-share-alt"></span> User Profile
 						</a>
 					</li>
 					<li>
-						<a class="" href="Item.jsp">
-							<span class="glyphicon glyphicon-share-alt"></span> Item Category
+						<a class="" href="User.jsp">
+							<span class="glyphicon glyphicon-share-alt"></span> User Account
 						</a>
 					</li>
+					
 				</ul>
 			</li>
 			<li class="parent ">
@@ -68,6 +69,11 @@
 					<span class="glyphicon glyphicon-list"></span> Management <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
 				</a>
 				<ul class="children collapse" id="sub-item-2">
+					<li>
+						<a class="" href="Item.jsp">
+							<span class="glyphicon glyphicon-share-alt"></span> Item Category
+						</a>
+					</li>
 					<li class="active">
 						<a class="" href="Management.jsp">
 							<span class="glyphicon glyphicon-share-alt"></span> Records  
@@ -87,13 +93,13 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">Forms</li>
+				<li class="active">Item</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Forms</h1>
+				<h1 class="page-header">Item</h1>
 			</div>
 		</div><!--/.row-->
 				
@@ -101,127 +107,48 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Form Elements</div>
+					<div class="panel-heading">Item Category Management</div>
 					<div class="panel-body">
-						<div class="col-md-6">
-							<form role="form">
-							
-								<div class="form-group">
-									<label>Text Input</label>
-									<input class="form-control" placeholder="Placeholder">
-								</div>
-																
-								<div class="form-group">
-									<label>Password</label>
-									<input type="password" class="form-control">
-								</div>
-								
-								<div class="form-group checkbox">
-								  <label>
-								    <input type="checkbox">Remember me</label>
-								</div>
-																
-								<div class="form-group">
-									<label>File input</label>
-									<input type="file">
-									 <p class="help-block">Example block-level help text here.</p>
-								</div>
-								
-								<div class="form-group">
-									<label>Text area</label>
-									<textarea class="form-control" rows="3"></textarea>
-								</div>
-								
-								<label>Validation</label>
-								<div class="form-group has-success">
-									<input class="form-control" placeholder="Success">
-								</div>
-								<div class="form-group has-warning">
-									<input class="form-control" placeholder="Warning">
-								</div>
-								<div class="form-group has-error">
-									<input class="form-control" placeholder="Error">
-								</div>
-								
-							</div>
-							<div class="col-md-6">
-							
-								<div class="form-group">
-									<label>Checkboxes</label>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" value="">Checkbox 1
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" value="">Checkbox 2
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" value="">Checkbox 3
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" value="">Checkbox 4
-										</label>
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<label>Radio Buttons</label>
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Radio Button 1
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio Button 2
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio Button 3
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio Button 4
-										</label>
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<label>Selects</label>
-									<select class="form-control">
-										<option>Option 1</option>
-										<option>Option 2</option>
-										<option>Option 3</option>
-										<option>Option 4</option>
-									</select>
-								</div>
-								
-								<div class="form-group">
-									<label>Multiple Selects</label>
-									<select multiple class="form-control">
-										<option>Option 1</option>
-										<option>Option 2</option>
-										<option>Option 3</option>
-										<option>Option 4</option>
-									</select>
-								</div>
-								
-								<button type="submit" class="btn btn-primary">Submit Button</button>
-								<button type="reset" class="btn btn-default">Reset Button</button>
-							</div>
-						</form>
+						<table data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+						    <thead>
+						    <tr>
+						        <th data-field="state" data-checkbox="true" >Item ID</th>
+						        <th data-field="id" data-sortable="true">Item ID</th>
+						        <th data-field="name"  data-sortable="true">Item Name</th>
+						        <th data-field="price" data-sortable="true">Item Price</th>
+						        <th data-field="remark" data-sortable="true">Item Remarks</th>
+						        <th data-field="date" data-sortable="true">Add Date</th>
+						        <th data-field="category_id" data-sortable="true">Item category</th>
+						        <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">Item Operate</th>
+						     </tr>		    
+						    </thead>
+						</table>
 					</div>
 				</div>
-			</div><!-- /.col-->
-		</div><!-- /.row -->
+			</div>
+			 
+  		</div><!--/.row-->	
+		  
+
+<div id="popupModal2" class="modal fade"<table><tr><td></td></tr></table>
+tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                	<h3>Title</h3>
+
+            </div>
+            <div class="modal-body">
+                <iframe src="" style="zoom:0.60" frameborder="0" height="250" width="99.6%"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+		 
 		
 	</div><!--/.main-->
 
@@ -232,7 +159,44 @@
 	<script src="js/easypiechart.js"></script>
 	<script src="js/easypiechart-data.js"></script>
 	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/bootstrap-table.js"></script>
 	<script>
+    function operateFormatter(value, row, index) {
+        return [
+           ' <a class="btn bootpopup" title="">Edit</a>',           
+            '<a id="remove" class="remove ml10" title="Remove">Remove</a>'         
+        ].join('');
+    }
+    
+    window.operateEvents = {
+        'click .bootpopup': function (e, value, row, index) {  	
+        	var frametarget = $(this).attr('href');
+        	var targetmodal = $(this).attr('target');
+        	if (targetmodal == undefined) {
+        	targetmodal = '#popupModal2';
+        	} else { 
+        	targetmodal = '#'+targetmodal;
+        	}
+        	if ($(this).attr('title') != undefined) {
+        	$(targetmodal+ ' .modal-header h3').html($(this).attr('title'));
+        	$(targetmodal+' .modal-header').show();
+        	} else {
+        	 $(targetmodal+' .modal-header h3').html('');
+        	$(targetmodal+' .modal-header').hide();
+        	}  
+        	$(targetmodal).on('show', function () {
+        	    $('iframe').attr("src", frametarget );   
+        	});
+        	$(targetmodal).modal({show:true});
+        	return false;   
+        },
+        'click .remove': function (e, value, row, index) {
+        	
+        	alert(JSON.stringify(row.id));
+        	 
+        }
+    };
+	 
 		!function ($) {
 			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
 				$(this).find('em:first').toggleClass("glyphicon-minus");	  
@@ -248,4 +212,5 @@
 		})
 	</script>	
 </body>
+
 </html>

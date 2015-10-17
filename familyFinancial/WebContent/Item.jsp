@@ -10,6 +10,17 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/datepicker3.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
+
+
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chart.min.js"></script>
+	<script src="js/chart-data.js"></script>
+	<script src="js/easypiechart.js"></script>
+	<script src="js/easypiechart-data.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/bootstrap-table.js"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -33,10 +44,10 @@
 					</li>
 				</ul>
 			</div>
-							
+
 		</div><!-- /.container-fluid -->
 	</nav>
-		
+
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<form role="search">
 			<div class="form-group">
@@ -48,195 +59,138 @@
 			<li ><a href="DataInput.jsp"><span class="glyphicon glyphicon-pencil"></span> Data Input</a></li>
 			<li class="parent ">
 				<a href="#">
-					<span class="glyphicon glyphicon-list"></span> Admin  <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
+					<span class="glyphicon glyphicon-list"></span> Admin  <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
 				</a>
 				<ul class="children collapse" id="sub-item-1">
 					<li>
-						<a class="" href="User.jsp">
+						<a class="" href="Profile.jsp">
 							<span class="glyphicon glyphicon-share-alt"></span> User Profile
 						</a>
 					</li>
-					<li class="active">
-						<a class="" href="Item.jsp">
-							<span class="glyphicon glyphicon-share-alt"></span> Item Category
+					<li>
+						<a class="" href="User.jsp">
+							<span class="glyphicon glyphicon-share-alt"></span> User Account
 						</a>
 					</li>
+
 				</ul>
 			</li>
 			<li class="parent ">
 				<a href="#">
-					<span class="glyphicon glyphicon-list"></span> Management <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
+					<span class="glyphicon glyphicon-list"></span> Management <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
 				</a>
 				<ul class="children collapse" id="sub-item-2">
 					<li>
+						<a class="" href="Item.jsp">
+							<span class="glyphicon glyphicon-share-alt"></span> Item Category
+						</a>
+					</li>
+					<li class="active">
 						<a class="" href="Management.jsp">
-							<span class="glyphicon glyphicon-share-alt"></span> Records  
+							<span class="glyphicon glyphicon-share-alt"></span> Records
 						</a>
 					</li>
 					<li>
 						<a class="" href="Report.jsp">
-							<span class="glyphicon glyphicon-share-alt"></span> Report  
+							<span class="glyphicon glyphicon-share-alt"></span> Report
 						</a>
 					</li>
 				</ul>
-			</li>		 
+			</li>
 		</ul>
 	</div><!--/.sidebar-->
-		
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
+
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">Forms</li>
+				<li class="active">Item Category</li>
 			</ol>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Forms</h1>
+				<h1 class="page-header">Item Category</h1>
 			</div>
 		</div><!--/.row-->
-				
-		
+
+
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Form Elements</div>
+					<div class="panel-heading">Add New Item Category</div>
 					<div class="panel-body">
 						<div class="col-md-6">
 							<form role="form">
-							
 								<div class="form-group">
-									<label>Text Input</label>
-									<input class="form-control" placeholder="Placeholder">
+									<label>Item name</label>
+									<input class="form-control" placeholder="User Name">
 								</div>
-																
-								<div class="form-group">
-									<label>Password</label>
-									<input type="password" class="form-control">
-								</div>
-								
-								<div class="form-group checkbox">
-								  <label>
-								    <input type="checkbox">Remember me</label>
-								</div>
-																
-								<div class="form-group">
-									<label>File input</label>
-									<input type="file">
-									 <p class="help-block">Example block-level help text here.</p>
-								</div>
-								
-								<div class="form-group">
-									<label>Text area</label>
-									<textarea class="form-control" rows="3"></textarea>
-								</div>
-								
-								<label>Validation</label>
-								<div class="form-group has-success">
-									<input class="form-control" placeholder="Success">
-								</div>
-								<div class="form-group has-warning">
-									<input class="form-control" placeholder="Warning">
-								</div>
-								<div class="form-group has-error">
-									<input class="form-control" placeholder="Error">
-								</div>
-								
-							</div>
-							<div class="col-md-6">
-							
-								<div class="form-group">
-									<label>Checkboxes</label>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" value="">Checkbox 1
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" value="">Checkbox 2
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" value="">Checkbox 3
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" value="">Checkbox 4
-										</label>
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<label>Radio Buttons</label>
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Radio Button 1
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio Button 2
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio Button 3
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio Button 4
-										</label>
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<label>Selects</label>
-									<select class="form-control">
-										<option>Option 1</option>
-										<option>Option 2</option>
-										<option>Option 3</option>
-										<option>Option 4</option>
-									</select>
-								</div>
-								
-								<div class="form-group">
-									<label>Multiple Selects</label>
-									<select multiple class="form-control">
-										<option>Option 1</option>
-										<option>Option 2</option>
-										<option>Option 3</option>
-										<option>Option 4</option>
-									</select>
-								</div>
-								
 								<button type="submit" class="btn btn-primary">Submit Button</button>
 								<button type="reset" class="btn btn-default">Reset Button</button>
-							</div>
 						</form>
+						</div>
+					</div>
+				</div><!-- /.col-->
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Item Category Management</div>
+				<div class="panel-body">
+					<div class="col-md-8">
+					<div class="panel-heading" id="accordion"><span class="glyphicon glyphicon-comment"></span>Item Category</div>
+					<div class="panel-body">
+						<table data-toggle="table" id="table-style" data-url="tables/data1.json" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+						    <thead>
+						    <tr>
+						        <th data-field="id" data-align="right" >Item ID</th>
+						        <th data-field="name" >Item Name</th>
+						    </tr>
+						    </thead>
+						</table>
+						<script>
+						    $(function () {
+						        $('#hover, #striped, #condensed').click(function () {
+						            var classes = 'table';
+
+						            if ($('#hover').prop('checked')) {
+						                classes += ' table-hover';
+						            }
+						            if ($('#condensed').prop('checked')) {
+						                classes += ' table-condensed';
+						            }
+						            $('#table-style').bootstrapTable('destroy')
+						                .bootstrapTable({
+						                    classes: classes,
+						                    striped: $('#striped').prop('checked')
+						                });
+						        });
+						    });
+
+						    function rowStyle(row, index) {
+						        var classes = ['active', 'success', 'info', 'warning', 'danger'];
+
+						        if (index % 2 === 0 && index / 2 < classes.length) {
+						            return {
+						                classes: classes[index / 2]
+						            };
+						        }
+						        return {};
+						    }
+						</script>
+					</div>
 					</div>
 				</div>
-			</div><!-- /.col-->
+			</div>
+			</div>
 		</div><!-- /.row -->
-		
+
 	</div><!--/.main-->
 
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/chart.min.js"></script>
-	<script src="js/chart-data.js"></script>
-	<script src="js/easypiechart.js"></script>
-	<script src="js/easypiechart-data.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
 	<script>
 		!function ($) {
-			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
-				$(this).find('em:first').toggleClass("glyphicon-minus");	  
-			}); 
+			$(document).on("click","ul.nav li.parent > a > span.icon", function(){
+				$(this).find('em:first').toggleClass("glyphicon-minus");
+			});
 			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
 		}(window.jQuery);
 
@@ -246,6 +200,6 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
-	</script>	
+	</script>
 </body>
 </html>

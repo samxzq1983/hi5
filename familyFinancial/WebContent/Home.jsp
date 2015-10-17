@@ -58,15 +58,16 @@
 				</a>
 				<ul class="children collapse" id="sub-item-1">
 					<li>
-						<a class="" href="User.jsp">
+						<a class="" href="Profile.jsp">
 							<span class="glyphicon glyphicon-share-alt"></span> User Profile
 						</a>
 					</li>
 					<li>
-						<a class="" href="Item.jsp">
-							<span class="glyphicon glyphicon-share-alt"></span> Item Category
+						<a class="" href="User.jsp">
+							<span class="glyphicon glyphicon-share-alt"></span> User Account
 						</a>
 					</li>
+					
 				</ul>
 			</li>
 			<li class="parent ">
@@ -74,6 +75,11 @@
 					<span class="glyphicon glyphicon-list"></span> Management <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
 				</a>
 				<ul class="children collapse" id="sub-item-2">
+					<li>
+						<a class="" href="Item.jsp">
+							<span class="glyphicon glyphicon-share-alt"></span> Item Category
+						</a>
+					</li>
 					<li>
 						<a class="" href="Management.jsp">
 							<span class="glyphicon glyphicon-share-alt"></span> Records  

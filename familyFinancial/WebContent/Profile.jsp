@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>DataInput</title>
+<title>User Profile</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/datepicker3.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
@@ -26,7 +26,7 @@
 					<li class="dropdown pull-right">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> User <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+							<li><a href="Profile.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 						</ul>
@@ -45,13 +45,13 @@
 		</form>
 		<ul class="nav menu">
 			<li ><a href="Home.jsp"><span class="glyphicon glyphicon-pencil"></span> Home</a></li>
-			<li class="active"><a href="DataInput.jsp"><span class="glyphicon glyphicon-pencil"></span> Data Input</a></li>
+			<li ><a href="DataInput.jsp"><span class="glyphicon glyphicon-pencil"></span> Data Input</a></li>
 			<li class="parent ">
 				<a href="#">
-					<span class="glyphicon glyphicon-list"></span> Admin<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
+					<span class="glyphicon glyphicon-list"></span> Admin  <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
 				</a>
 				<ul class="children collapse" id="sub-item-1">
-					<li>
+					<li class="active">
 						<a class="" href="Profile.jsp">
 							<span class="glyphicon glyphicon-share-alt"></span> User Profile
 						</a>
@@ -61,7 +61,7 @@
 							<span class="glyphicon glyphicon-share-alt"></span> User Account
 						</a>
 					</li>
-					
+					 
 				</ul>
 			</li>
 			<li class="parent ">
@@ -69,7 +69,7 @@
 					<span class="glyphicon glyphicon-list"></span> Management <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
 				</a>
 				<ul class="children collapse" id="sub-item-2">
-					<li>
+				<li>
 						<a class="" href="Item.jsp">
 							<span class="glyphicon glyphicon-share-alt"></span> Item Category
 						</a>
@@ -93,63 +93,91 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">Data Input</li>
+				<li class="active">User Profile</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Data Input</h1>
+				<h1 class="page-header">User Profile</h1>
 			</div>
 		</div><!--/.row-->
-				
-		
-		<div class="row">
+			<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Add New Record</div>
+					<div class="panel-heading">Add New Profile</div>
 					<div class="panel-body">
-						<div class="col-md-6">
+						<div class="col-md-8">
 							<form role="form">
 							
 								<div class="form-group">
-									<label>Name</label>
-									<input class="form-control" placeholder="Name">
+									<label>Profile Name</label>
+									<input class="form-control" placeholder="Profile">
 								</div>
+																
 								<div class="form-group">
-									<label>Price</label>
-									<input class="form-control" placeholder="Price">
-								</div>								
-								<div class="form-group">
-									<label>Remark</label>
-									<input class="form-control" placeholder="Remarks">
-								</div>						 															
-								<div class="form-group">
-									<label>File input</label>
-									<input type="file">
-									 <p class="help-block">Example block-level help text here.</p>
-								</div>								 							
-							</div>
-							<div class="col-md-6">						 
-								<div class="form-group">
-									<label>Category</label>
-									<select class="form-control">
-										<option>Option 1</option>
-										<option>Option 2</option>
-										<option>Option 3</option>
-										<option>Option 4</option>
-									</select>
-								</div>								 
-								
+									<label>Profile Description</label>
+									<input class="form-control">
+								</div>							 						
 								<button type="submit" class="btn btn-primary">Submit Button</button>
 								<button type="reset" class="btn btn-default">Reset Button</button>
-							</div>
+							 
 						</form>
 					</div>
 				</div>
 			</div><!-- /.col-->
-		</div><!-- /.row -->
+		 			 
+				<div class="panel panel-default">
+					<div class="panel-heading">Profile Management</div>
+					<div class="panel-body">
+						<div class="col-md-8">
+					<div class="panel-heading" id="accordion"><span class="glyphicon glyphicon-comment"></span>Profile</div>
+					<div class="panel-body">
+						<table data-toggle="table" id="table-style" data-url="tables/data2.json" data-row-style="rowStyle">
+						    <thead>
+						    <tr>
+						        <th data-field="id" data-align="right" >Profile Name</th>
+						        <th data-field="name" >Profile Description</th>					        
+						    </tr>
+						    </thead>
+						</table>
+						<script>
+						    $(function () {
+						        $('#hover, #striped, #condensed').click(function () {
+						            var classes = 'table';
+						
+						            if ($('#hover').prop('checked')) {
+						                classes += ' table-hover';
+						            }
+						            if ($('#condensed').prop('checked')) {
+						                classes += ' table-condensed';
+						            }
+						            $('#table-style').bootstrapTable('destroy')
+						                .bootstrapTable({
+						                    classes: classes,
+						                    striped: $('#striped').prop('checked')
+						                });
+						        });
+						    });
+						
+						    function rowStyle(row, index) {
+						        var classes = ['active', 'success', 'info', 'warning', 'danger'];
+						
+						        if (index % 2 === 0 && index / 2 < classes.length) {
+						            return {
+						                classes: classes[index / 2]
+						            };
+						        }
+						        return {};
+						    }
+						</script>
+					</div>
+				</div>			 
+		</div>
+		</div>
+		</div>
 		
+		</div><!-- /.row -->		 			 
 	</div><!--/.main-->
 
 	<script src="js/jquery-1.11.1.min.js"></script>

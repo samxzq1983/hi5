@@ -1,0 +1,10 @@
+[
+    {
+        "id": 0,
+        "name": "Item 0",
+        "price": "$0",
+		 "remark": "$0",
+		  "date": "1 Oct 2015",
+		   "category_id": "ABC"    
+    }
+]

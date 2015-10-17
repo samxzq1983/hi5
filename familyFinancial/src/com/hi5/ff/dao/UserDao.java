@@ -2,6 +2,8 @@ package com.hi5.ff.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.hi5.ff.dao.UserDao;
 import com.hi5.ff.util.SQLUtil;
@@ -47,6 +49,31 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return user;
+
+
+	}
+
+	public List<User> getAllUsers(){
+
+		List<User> userList = new ArrayList<User>();
+
+		String sql = "select * from user";
+		ResultSet rs = SQLUtil.executeQuery(sql);
+		try{
+			while(rs.next()){
+				User user = new User();
+				user.setUserId(rs.getInt("user_id"));
+				user.setProfileId(rs.getInt("profile_id"));
+				user.setUseName(rs.getString("user_name"));
+				user.setPassword(rs.getString("user_password"));
+
+				userList.add(user);
+			}
+			rs.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return userList;
 
 
 	}

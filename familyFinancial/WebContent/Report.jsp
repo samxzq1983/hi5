@@ -5,14 +5,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>DataInput</title>
+<title>Family Financial- Report</title>
+
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/datepicker3.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+
 </head>
+
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
@@ -45,10 +52,10 @@
 		</form>
 		<ul class="nav menu">
 			<li ><a href="Home.jsp"><span class="glyphicon glyphicon-pencil"></span> Home</a></li>
-			<li class="active"><a href="DataInput.jsp"><span class="glyphicon glyphicon-pencil"></span> Data Input</a></li>
+			<li ><a href="DataInput.jsp"><span class="glyphicon glyphicon-pencil"></span> Data Input</a></li>
 			<li class="parent ">
 				<a href="#">
-					<span class="glyphicon glyphicon-list"></span> Admin<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
+					<span class="glyphicon glyphicon-list"></span> Admin  <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
 				</a>
 				<ul class="children collapse" id="sub-item-1">
 					<li>
@@ -61,7 +68,7 @@
 							<span class="glyphicon glyphicon-share-alt"></span> User Account
 						</a>
 					</li>
-					
+					 
 				</ul>
 			</li>
 			<li class="parent ">
@@ -69,18 +76,18 @@
 					<span class="glyphicon glyphicon-list"></span> Management <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
 				</a>
 				<ul class="children collapse" id="sub-item-2">
-					<li>
+				<li>
 						<a class="" href="Item.jsp">
 							<span class="glyphicon glyphicon-share-alt"></span> Item Category
 						</a>
 					</li>
-					<li>
+					<li class="">
 						<a class="" href="Management.jsp">
 							<span class="glyphicon glyphicon-share-alt"></span> Records  
 						</a>
 					</li>
 					<li>
-						<a class="" href="Report.jsp">
+						<a class="active" href="Report.jsp">
 							<span class="glyphicon glyphicon-share-alt"></span> Report  
 						</a>
 					</li>
@@ -93,64 +100,107 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">Data Input</li>
+				<li class="active">Charts</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Data Input</h1>
+				<h1 class="page-header">Charts</h1>
+				
 			</div>
 		</div><!--/.row-->
-				
 		
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Add New Record</div>
+					<div class="panel-heading">Line Chart</div>
 					<div class="panel-body">
-						<div class="col-md-6">
-							<form role="form">
-							
-								<div class="form-group">
-									<label>Name</label>
-									<input class="form-control" placeholder="Name">
-								</div>
-								<div class="form-group">
-									<label>Price</label>
-									<input class="form-control" placeholder="Price">
-								</div>								
-								<div class="form-group">
-									<label>Remark</label>
-									<input class="form-control" placeholder="Remarks">
-								</div>						 															
-								<div class="form-group">
-									<label>File input</label>
-									<input type="file">
-									 <p class="help-block">Example block-level help text here.</p>
-								</div>								 							
-							</div>
-							<div class="col-md-6">						 
-								<div class="form-group">
-									<label>Category</label>
-									<select class="form-control">
-										<option>Option 1</option>
-										<option>Option 2</option>
-										<option>Option 3</option>
-										<option>Option 4</option>
-									</select>
-								</div>								 
-								
-								<button type="submit" class="btn btn-primary">Submit Button</button>
-								<button type="reset" class="btn btn-default">Reset Button</button>
-							</div>
-						</form>
+						<div class="canvas-wrapper">
+							<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
+						</div>
 					</div>
 				</div>
-			</div><!-- /.col-->
-		</div><!-- /.row -->
+			</div>
+		</div><!--/.row-->
 		
-	</div><!--/.main-->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Bar Chart</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper">
+							<canvas class="main-chart" id="bar-chart" height="200" width="600"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->		
+		
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Pie Chart</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper">
+							<canvas class="chart" id="pie-chart" ></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Doughnut Chart</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper">
+							<canvas class="chart" id="doughnut-chart" ></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>Label:</h4>
+						<div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>Label:</h4>
+						<div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>Label:</h4>
+						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>Label:</h4>
+						<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->
+											
+	</div>	<!--/.main-->
+	  
 
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -161,10 +211,10 @@
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script>
 		!function ($) {
-			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
-				$(this).find('em:first').toggleClass("glyphicon-minus");	  
-			}); 
-			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
+		        $(this).find('em:first').toggleClass("glyphicon-minus");      
+		    }); 
+		    $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
 		}(window.jQuery);
 
 		$(window).on('resize', function () {
@@ -175,4 +225,5 @@
 		})
 	</script>	
 </body>
+
 </html>
