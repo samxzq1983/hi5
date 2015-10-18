@@ -33,10 +33,10 @@
 					</li>
 				</ul>
 			</div>
-							
+
 		</div><!-- /.container-fluid -->
 	</nav>
-		
+
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<form role="search">
 			<div class="form-group">
@@ -48,7 +48,7 @@
 			<li ><a href="DataInput.jsp"><span class="glyphicon glyphicon-pencil"></span> Data Input</a></li>
 			<li class="parent ">
 				<a href="#">
-					<span class="glyphicon glyphicon-list"></span> Admin  <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
+					<span class="glyphicon glyphicon-list"></span> Admin  <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
 				</a>
 				<ul class="children collapse" id="sub-item-1">
 					<li>
@@ -61,12 +61,12 @@
 							<span class="glyphicon glyphicon-share-alt"></span> User Account
 						</a>
 					</li>
-					
+
 				</ul>
 			</li>
 			<li class="parent ">
 				<a href="#">
-					<span class="glyphicon glyphicon-list"></span> Management <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
+					<span class="glyphicon glyphicon-list"></span> Management <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
 				</a>
 				<ul class="children collapse" id="sub-item-2">
 					<li>
@@ -76,34 +76,34 @@
 					</li>
 					<li class="active">
 						<a class="" href="Management.jsp">
-							<span class="glyphicon glyphicon-share-alt"></span> Records  
+							<span class="glyphicon glyphicon-share-alt"></span> Records
 						</a>
 					</li>
 					<li>
 						<a class="" href="Report.jsp">
-							<span class="glyphicon glyphicon-share-alt"></span> Report  
+							<span class="glyphicon glyphicon-share-alt"></span> Report
 						</a>
 					</li>
 				</ul>
-			</li>		 
+			</li>
 		</ul>
 	</div><!--/.sidebar-->
-		
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
+
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
 				<li class="active">Item</li>
 			</ol>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Item</h1>
 			</div>
 		</div><!--/.row-->
-				
-		
+
+
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
@@ -119,16 +119,16 @@
 						        <th data-field="remark" data-sortable="true">Item Remarks</th>
 						        <th data-field="date" data-sortable="true">Add Date</th>
 						        <th data-field="category_id" data-sortable="true">Item category</th>
-						        <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">Item Operate</th>
-						     </tr>		    
+						        <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">Action</th>
+						     </tr>
 						    </thead>
 						</table>
 					</div>
 				</div>
 			</div>
-			 
-  		</div><!--/.row-->	
-		  
+
+  		</div><!--/.row-->
+
 
 <div id="popupModal2" class="modal fade"<table><tr><td></td></tr></table>
 tabindex="-1" role="dialog">
@@ -148,8 +148,8 @@ tabindex="-1" role="dialog">
         </div>
     </div>
 </div>
-		 
-		
+
+
 	</div><!--/.main-->
 
 	<script src="js/jquery-1.11.1.min.js"></script>
@@ -163,18 +163,18 @@ tabindex="-1" role="dialog">
 	<script>
     function operateFormatter(value, row, index) {
         return [
-           ' <a class="btn bootpopup" title="">Edit</a>',           
-            '<a id="remove" class="remove ml10" title="Remove">Remove</a>'         
+           ' <a class="btn bootpopup" title="">Edit</a>',
+            '<a id="remove" class="remove ml10" title="Remove">Remove</a>'
         ].join('');
     }
-    
+
     window.operateEvents = {
-        'click .bootpopup': function (e, value, row, index) {  	
+        'click .bootpopup': function (e, value, row, index) {
         	var frametarget = $(this).attr('href');
         	var targetmodal = $(this).attr('target');
         	if (targetmodal == undefined) {
         	targetmodal = '#popupModal2';
-        	} else { 
+        	} else {
         	targetmodal = '#'+targetmodal;
         	}
         	if ($(this).attr('title') != undefined) {
@@ -183,24 +183,24 @@ tabindex="-1" role="dialog">
         	} else {
         	 $(targetmodal+' .modal-header h3').html('');
         	$(targetmodal+' .modal-header').hide();
-        	}  
+        	}
         	$(targetmodal).on('show', function () {
-        	    $('iframe').attr("src", frametarget );   
+        	    $('iframe').attr("src", frametarget );
         	});
         	$(targetmodal).modal({show:true});
-        	return false;   
+        	return false;
         },
         'click .remove': function (e, value, row, index) {
-        	
+
         	alert(JSON.stringify(row.id));
-        	 
+
         }
     };
-	 
+
 		!function ($) {
-			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
-				$(this).find('em:first').toggleClass("glyphicon-minus");	  
-			}); 
+			$(document).on("click","ul.nav li.parent > a > span.icon", function(){
+				$(this).find('em:first').toggleClass("glyphicon-minus");
+			});
 			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
 		}(window.jQuery);
 
@@ -210,7 +210,7 @@ tabindex="-1" role="dialog">
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
-	</script>	
+	</script>
 </body>
 
 </html>

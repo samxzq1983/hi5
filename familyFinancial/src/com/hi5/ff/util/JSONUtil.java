@@ -1,16 +1,18 @@
 package com.hi5.ff.util;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.hi5.ff.dao.ProfileDao;
 import com.hi5.ff.entity.User;
 
 public class JSONUtil {
 
-	public static JSONArray genJSONArray(ArrayList<Object> objArray) throws JSONException{
+	public static JSONArray genJSONArray(List objArray) throws JSONException{
 		JSONArray ja = new JSONArray();
 		if(objArray.isEmpty()){
 			return ja;
@@ -23,8 +25,9 @@ public class JSONUtil {
 				JSONObject userJson = new JSONObject();
 				userJson.put("id", user.getUserId());
 				userJson.put("profileId", user.getProfileId());
+				userJson.put("profileName", new ProfileDao().getProfileNameById(user.getProfileId()));
 				userJson.put("name", user.getUseName());
-				ja.put(user);
+				ja.put(userJson);
 			}
 		}
 

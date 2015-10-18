@@ -12,7 +12,12 @@
   </servlet>
 
   <servlet>
-  	<servlet-name>UserManagementServlet</servlet-name>
+  	<servlet-name>reteriveUserTable</servlet-name>
+  	<servlet-class>com.hi5.ff.servlet.UserTableServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+  	<servlet-name>userManagementServlet</servlet-name>
   	<servlet-class>com.hi5.ff.servlet.UserManagementServlet</servlet-class>
   </servlet>
 
@@ -22,8 +27,13 @@
     </servlet-mapping>
 
   <servlet-mapping>
-        <servlet-name>UserManagementServlet</servlet-name>
-        <url-pattern>/usermgr</url-pattern>
+        <servlet-name>reteriveUserTable</servlet-name>
+        <url-pattern>/reteriveUserTable</url-pattern>
+    </servlet-mapping>
+
+  <servlet-mapping>
+        <servlet-name>userManagementServlet</servlet-name>
+        <url-pattern>/userManagementServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>
