@@ -67,7 +67,10 @@ public class SQLUtil {
 			Object arg = args[i - 1];
 			if (arg instanceof Integer) {
 				pstmt.setInt(i, (Integer) arg);
-			} else {
+			}else if(arg instanceof Double){
+				pstmt.setDouble(i, (Double) arg);
+			}
+			else {
 				pstmt.setString(i, (String) arg);
 			}
 

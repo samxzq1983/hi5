@@ -1,18 +1,25 @@
 package com.hi5.ff.util;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.hi5.ff.dao.CategoryDao;
 import com.hi5.ff.dao.ProfileDao;
+import com.hi5.ff.dao.UserDao;
 import com.hi5.ff.entity.Category;
+import com.hi5.ff.entity.Item;
 import com.hi5.ff.entity.Profile;
 import com.hi5.ff.entity.User;
 
 public class JSONUtil {
+
+	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	public static JSONArray genJSONArray(List objArray) throws JSONException{
 		JSONArray ja = new JSONArray();
@@ -48,9 +55,51 @@ public class JSONUtil {
 				categoryJson.put("name", category.getCategoryName());
 				ja.put(categoryJson);
 			}
+		}else if(rawObj instanceof Item){
+			for(Object itemObj:objArray){
+				Item item = (Item) itemObj;
+				JSONObject itemJson = new JSONObject();
+				itemJson.put("id", item.getItemId());
+				itemJson.put("name", item.getItemName());
+				itemJson.put("price", item.getItemPrice());
+				itemJson.put("remark", item.getItemRemark());
+				itemJson.put("userId", item.getUserId());
+				itemJson.put("userName", getUserName(item.getUserId()));
+				itemJson.put("date", sdf.format(item.getItemAddDate()));
+				itemJson.put("categoryId", item.getCategoryId());
+				itemJson.put("categoryName", getCategoryName(item.getCategoryId()));
+				ja.put(itemJson);
+			}
 		}
 
 		return ja;
+	}
+
+
+
+	private static String getCategoryName(int categoryId) {
+		// TODO Auto-generated method stub
+		String categoryName = "";
+		CategoryDao categroyDao = new CategoryDao();
+		Category category = categroyDao.getCategory(categoryId);
+		if(category!=null){
+			categoryName = category.getCategoryName();
+		}
+		return categoryName;
+
+	}
+
+
+
+	private static String getUserName(int userId) {
+		// TODO Auto-generated method stub
+		String userName = "";
+		UserDao userDao = new UserDao();
+		User user = userDao.getUser(userId);
+		if(user!=null){
+			userName =user.getUseName();
+		}
+		return userName;
 	}
 
 

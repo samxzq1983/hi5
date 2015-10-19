@@ -24,6 +24,10 @@
   	<servlet-name>reteriveCategoryTable</servlet-name>
   	<servlet-class>com.hi5.ff.servlet.CategoryTableServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>reteriveItemTable</servlet-name>
+  	<servlet-class>com.hi5.ff.servlet.ItemTableServlet</servlet-class>
+  </servlet>
 
   <servlet>
   	<servlet-name>userManagementServlet</servlet-name>
@@ -36,6 +40,10 @@
   <servlet>
   	<servlet-name>categoryManagementServlet</servlet-name>
   	<servlet-class>com.hi5.ff.servlet.CategoryManagementServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>itemManagementServlet</servlet-name>
+  	<servlet-class>com.hi5.ff.servlet.ItemManagementServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
@@ -58,6 +66,11 @@
         <url-pattern>/reteriveCategoryTable</url-pattern>
     </servlet-mapping>
 
+     <servlet-mapping>
+        <servlet-name>reteriveItemTable</servlet-name>
+        <url-pattern>/reteriveItemTable</url-pattern>
+    </servlet-mapping>
+
   <servlet-mapping>
         <servlet-name>userManagementServlet</servlet-name>
         <url-pattern>/userManagementServlet</url-pattern>
@@ -71,6 +84,10 @@
     <servlet-mapping>
         <servlet-name>categoryManagementServlet</servlet-name>
         <url-pattern>/categoryManagementServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>itemManagementServlet</servlet-name>
+        <url-pattern>/itemManagementServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

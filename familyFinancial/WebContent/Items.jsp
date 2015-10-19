@@ -6,10 +6,31 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Records Management</title>
+<title>Items Management</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/datepicker3.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
+<%@ page import="java.util.List" %>
+<%@ page import="com.hi5.ff.entity.*" %>
+<%@ page import="com.hi5.ff.dao.*" %>
+<%
+UserDao userDao = new UserDao();
+List<User> userList = userDao.getAllUsers();
+
+CategoryDao categoryDao = new CategoryDao();
+List<Category> categoryList = categoryDao.getAllCategories();
+
+Boolean actionSuccess = false;
+if(request.getAttribute("actionSuccess")!=null){
+	actionSuccess = (Boolean) request.getAttribute("actionSuccess");
+}
+
+String actionMsg = "";
+if(request.getAttribute("actionMsg")!=null){
+	actionMsg = (String) request.getAttribute("actionMsg");
+}
+
+%>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -43,32 +64,86 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">Item</li>
+				<li class="active">Items</li>
 			</ol>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Item</h1>
+				<h1 class="page-header">Items</h1>
 			</div>
+			<div id="msgArea"></div>
 		</div><!--/.row-->
+
+
 
 
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">Item Category Management</div>
+			<div class="panel panel-default">
+					<div class="panel-heading">Add New Item</div>
 					<div class="panel-body">
-						<table data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+						<div class="col-md-6">
+							<form id="addForm" role="form" action="./itemManagementServlet?action=add" method="post">
+								<div class="form-group">
+									<label>Item name</label>
+									<input class="form-control" placeholder="Item Name" name="addItemName" />
+								</div>
+
+								<div class="form-group">
+									<label>Item Price</label>
+									<input class="form-control" placeholder="Item Price" name="addItemPrice" />
+								</div>
+
+								<div class="form-group">
+									<label>Item Remark</label>
+									<input class="form-control" placeholder="Item Remark" name="addItemRemark" />
+								</div>
+
+								<div class="form-group">
+									<label>Category</label>
+									<select class="form-control" name="addCategroyId">
+										<%if(categoryList!=null){
+											for(Category category:categoryList){
+										%>
+										<option value="<%=category.getCategoryId()%>"><%=category.getCategoryName() %></option>
+										<%	}
+										} %>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label>Added By</label>
+									<select class="form-control" name="addUserId">
+										<%if(userList!=null){
+											for(User user:userList){
+										%>
+										<option value="<%=user.getUserId()%>"><%=user.getUseName() %></option>
+										<%	}
+										} %>
+									</select>
+								</div>
+
+								<button type="submit" class="btn btn-primary">Add</button>
+								<button type="reset" class="btn btn-default" >Reset</button>
+						</form>
+						</div>
+					</div>
+				</div><!-- /.col-->
+
+				<div class="panel panel-default">
+					<div class="panel-heading">Items Management</div>
+					<div class="panel-body">
+						<table data-toggle="table" data-url="./reteriveItemTable"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 						    <thead>
 						    <tr>
-						        <th data-field="state" data-checkbox="true" >Item ID</th>
 						        <th data-field="id" data-sortable="true">Item ID</th>
 						        <th data-field="name"  data-sortable="true">Item Name</th>
 						        <th data-field="price" data-sortable="true">Item Price</th>
 						        <th data-field="remark" data-sortable="true">Item Remarks</th>
-						        <th data-field="date" data-sortable="true">Add Date</th>
-						        <th data-field="category_id" data-sortable="true">Item category</th>
+						        <th data-field="userName" data-sortable="true">Add By</th>
+						        <th data-field="date" data-sortable="true">Add On</th>
+						        <th data-field="categoryName" data-sortable="true">Item category</th>
 						        <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">Action</th>
 						     </tr>
 						    </thead>
@@ -80,24 +155,119 @@
   		</div><!--/.row-->
 
 
-<div id="popupModal2" class="modal fade"<table><tr><td></td></tr></table>
-tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                	<h3>Title</h3>
+		<div id="popupModal1" class="modal fade"
+			<table><tr><td></td></tr></table> tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">×</button>
+						<h3>Title</h3>
 
-            </div>
-            <div class="modal-body">
-                <iframe src="" style="zoom:0.60" frameborder="0" height="250" width="99.6%"></iframe>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-default" data-dismiss="modal">OK</button>
-            </div>
-        </div>
-    </div>
-</div>
+					</div>
+					<div class="modal-body">
+						<div class="panel-heading">Edit Item</div>
+						<form id="editForm" role="form"
+							action="./itemManagementServlet?action=edit" method="post">
+
+							<div class="form-group">
+								<label>Item Name</label> <input class="form-control"
+									placeholder="Item Name" name="editItemName" id="editItemName" />
+							</div>
+
+							<div class="form-group">
+									<label>Item Price</label>
+									<input class="form-control" placeholder="Item Price" name="editItemPrice" id="editItemPrice"/>
+								</div>
+
+								<div class="form-group">
+									<label>Item Remark</label>
+									<input class="form-control" placeholder="Item Remark" name="editItemRemark" id="editItemRemark" />
+								</div>
+
+								<div class="form-group">
+									<label>Category</label>
+									<select class="form-control" name="editCategoryId" id="editCategoryId">
+										<%if(categoryList!=null){
+											for(Category category:categoryList){
+										%>
+										<option value="<%=category.getCategoryId()%>"><%=category.getCategoryName() %></option>
+										<%	}
+										} %>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label>Added By</label>
+									<select class="form-control" name="editUserId" id="editUserId">
+										<%if(userList!=null){
+											for(User user:userList){
+										%>
+										<option value="<%=user.getUserId()%>"><%=user.getUseName() %></option>
+										<%	}
+										} %>
+									</select>
+								</div>
+							<input type="hidden" name="editItemId" id="editItemId" />
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-default" data-dismiss="modal"
+							onclick="javascript:$('#editForm').submit();">Edit</button>
+						<button type="reset" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="popupModal2" class="modal fade"
+			<table><tr><td></td></tr></table> tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">×</button>
+						<h3>Title</h3>
+
+					</div>
+					<div class="modal-body">
+						<div class="panel-heading">Remove Item</div>
+						<form id="removeForm" role="form"
+							action="./itemManagementServlet?action=remove" method="post">
+
+							<div class="form-group">
+								<label>Item Name</label> <input class="form-control"
+									placeholder="Item Name" name="removeUserName" id="removeItemName" readonly/>
+							</div>
+
+							<div class="form-group">
+									<label>Item Price</label>
+									<input class="form-control"  name="removeItemPrice" id="removeItemPrice" readonly/>
+								</div>
+
+								<div class="form-group">
+									<label>Item Remark</label>
+									<input class="form-control"  name="removeItemRemark" id="removeItemRemark" readonly/>
+								</div>
+
+								<div class="form-group">
+									<label>Category</label>
+									<input class="form-control"  name="removeCategoryName" id="removeCategoryName" readonly/>
+								</div>
+
+								<div class="form-group">
+									<label>Added By</label>
+									<input class="form-control" name="removeUserName" id="removeUserName" readonly/>
+								</div>
+							<input type="hidden" name="removeItemId" id="removeItemId" />
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-default" data-dismiss="modal"
+							onclick="javascript:$('#removeForm').submit();">Remove</button>
+						<button type="reset" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
 	</div><!--/.main-->
@@ -111,41 +281,7 @@ tabindex="-1" role="dialog">
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script src="js/bootstrap-table.js"></script>
 	<script>
-    function operateFormatter(value, row, index) {
-        return [
-           ' <a class="btn bootpopup" title="">Edit</a>',
-            '<a id="remove" class="remove ml10" title="Remove">Remove</a>'
-        ].join('');
-    }
 
-    window.operateEvents = {
-        'click .bootpopup': function (e, value, row, index) {
-        	var frametarget = $(this).attr('href');
-        	var targetmodal = $(this).attr('target');
-        	if (targetmodal == undefined) {
-        	targetmodal = '#popupModal2';
-        	} else {
-        	targetmodal = '#'+targetmodal;
-        	}
-        	if ($(this).attr('title') != undefined) {
-        	$(targetmodal+ ' .modal-header h3').html($(this).attr('title'));
-        	$(targetmodal+' .modal-header').show();
-        	} else {
-        	 $(targetmodal+' .modal-header h3').html('');
-        	$(targetmodal+' .modal-header').hide();
-        	}
-        	$(targetmodal).on('show', function () {
-        	    $('iframe').attr("src", frametarget );
-        	});
-        	$(targetmodal).modal({show:true});
-        	return false;
-        },
-        'click .remove': function (e, value, row, index) {
-
-        	alert(JSON.stringify(row.id));
-
-        }
-    };
 
 		!function ($) {
 			$(document).on("click","ul.nav li.parent > a > span.icon", function(){
@@ -160,6 +296,82 @@ tabindex="-1" role="dialog">
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
+
+
+
+
+		function operateFormatter(value, row, index) {
+	        return [
+	           ' <a class="btn bootpopup" title="">Edit</a>',
+	            '<a id="remove" class="remove ml10" title="Remove">Remove</a>'
+	        ].join('');
+    	}
+
+
+
+
+		window.operateEvents = {
+		        'click .bootpopup': function (e, value, row, index) {
+		        	var targetmodal = $(this).attr('target');
+		        	targetmodal = '#popupModal1';
+		        	if ($(this).attr('title') != undefined) {
+		        	$(targetmodal+ ' .modal-header h3').html($(this).attr('title'));
+		        	$(targetmodal+' .modal-header').show();
+		        	} else {
+		        	 $(targetmodal+' .modal-header h3').html('');
+		        	$(targetmodal+' .modal-header').hide();
+		        	}
+		        	$(targetmodal).on('show', function () {
+		        	    //$('iframe').attr("src", frametarget );
+
+		        	});
+		        	$("#editItemName").val(row.name);
+		        	$("#editItemPrice").val(row.price);
+		        	$("#editItemRemark").val(row.remark);
+		        	$("#editCategoryId").val(row.categoryId);
+		        	$("#editUserId").val(row.userId);
+		        	$("#editItemId").val(row.id);
+		        	$(targetmodal).modal({show:true});
+		        	return false;
+		        },
+		        'click .remove': function (e, value, row, index) {
+
+		        	var targetmodal = $(this).attr('target');
+		        	targetmodal = '#popupModal2';
+		        	if ($(this).attr('title') != undefined) {
+		        	$(targetmodal+ ' .modal-header h3').html($(this).attr('title'));
+		        	$(targetmodal+' .modal-header').show();
+		        	} else {
+		        	 $(targetmodal+' .modal-header h3').html('');
+		        	$(targetmodal+' .modal-header').hide();
+		        	}
+		        	$(targetmodal).on('show', function () {
+		        	    //$('iframe').attr("src", frametarget );
+
+		        	});
+		        	$("#removeItemName").val(row.name);
+		        	$("#removeItemPrice").val(row.price);
+		        	$("#removeItemRemark").val(row.remark);
+		        	$("#removeCategoryName").val(row.categoryName);
+		        	$("#removeUserName").val(row.userName);
+		        	$("#removeItemId").val(row.id);
+		        	$(targetmodal).modal({show:true});
+		        	return false;
+
+		        }
+		    };
+
+
+		$(document).ready(function(){
+			<%if(actionMsg!=null){
+				if(actionSuccess){%>
+			$("#msgArea").html("<font color='green'><%=actionMsg%></font>");
+				<%}else{%>
+			$("#msgArea").html("<font color='red'><%=actionMsg%></font>");
+				<%}
+			}%>
+		});
+
 	</script>
 </body>
 
