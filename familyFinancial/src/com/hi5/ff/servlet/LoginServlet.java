@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hi5.ff.dao.ProfileDao;
 import com.hi5.ff.dao.UserDao;
+import com.hi5.ff.entity.Profile;
 import com.hi5.ff.entity.User;
+import com.hi5.ff.util.FFProperties;
 
 public class LoginServlet extends HttpServlet{
 
@@ -28,6 +31,12 @@ public class LoginServlet extends HttpServlet{
 		User user = userDao.getUser(userName, password);
 		if(user!=null){
 			req.getSession().setAttribute("user",user);
+			ProfileDao profileDao = new ProfileDao();
+			Profile profile = profileDao.getProfile(user.getProfileId());
+			if(profile!=null
+					&& profile.getProfileName().equals(FFProperties.getProperties().getProperty("ADMIN_PROFILE_NAME"))){
+				req.getSession().setAttribute("isAdminUser","Y");
+			}
 			req.getRequestDispatcher("Home.jsp").forward(req, resp);
 		}else{
 			resp.sendRedirect("Login.jsp");

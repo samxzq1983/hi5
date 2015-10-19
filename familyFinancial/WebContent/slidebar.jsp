@@ -8,9 +8,9 @@
 			<li ><a href="Home.jsp"><span class="glyphicon glyphicon-pencil"></span> Home</a></li>
 			<li ><a href="DataInput.jsp"><span class="glyphicon glyphicon-pencil"></span> Data Input</a></li>
 			<%
-			if(session.getAttribute("user")!=null){
-				User user = (User) session.getAttribute("user");
-				if(user.getProfileId() == 1){
+			if(session.getAttribute("user")!=null
+			&& session.getAttribute("isAdminUser")!=null
+			&& "Y".equals(session.getAttribute("isAdminUser"))){
 			%>
 
 			<li class="parent ">
@@ -41,7 +41,6 @@
 
 				</ul>
 			</li>
-			<%}
-				}%>
+			<%}%>
 		</ul>
 	</div><!--/.sidebar-->
