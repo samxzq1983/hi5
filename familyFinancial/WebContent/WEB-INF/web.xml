@@ -17,8 +17,25 @@
   </servlet>
 
   <servlet>
+  	<servlet-name>reteriveProfileTable</servlet-name>
+  	<servlet-class>com.hi5.ff.servlet.ProfileTableServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>reteriveCategoryTable</servlet-name>
+  	<servlet-class>com.hi5.ff.servlet.CategoryTableServlet</servlet-class>
+  </servlet>
+
+  <servlet>
   	<servlet-name>userManagementServlet</servlet-name>
   	<servlet-class>com.hi5.ff.servlet.UserManagementServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>profileManagementServlet</servlet-name>
+  	<servlet-class>com.hi5.ff.servlet.ProfileManagementServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>categoryManagementServlet</servlet-name>
+  	<servlet-class>com.hi5.ff.servlet.CategoryManagementServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
@@ -31,9 +48,29 @@
         <url-pattern>/reteriveUserTable</url-pattern>
     </servlet-mapping>
 
+   <servlet-mapping>
+        <servlet-name>reteriveProfileTable</servlet-name>
+        <url-pattern>/reteriveProfileTable</url-pattern>
+    </servlet-mapping>
+
+       <servlet-mapping>
+        <servlet-name>reteriveCategoryTable</servlet-name>
+        <url-pattern>/reteriveCategoryTable</url-pattern>
+    </servlet-mapping>
+
   <servlet-mapping>
         <servlet-name>userManagementServlet</servlet-name>
         <url-pattern>/userManagementServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>profileManagementServlet</servlet-name>
+        <url-pattern>/profileManagementServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>categoryManagementServlet</servlet-name>
+        <url-pattern>/categoryManagementServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

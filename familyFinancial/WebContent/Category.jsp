@@ -6,13 +6,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>User Profile</title>
+<title>Item</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/datepicker3.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
-<%@ page import="java.util.List" %>
-<%@ page import="com.hi5.ff.entity.*" %>
-<%@ page import="com.hi5.ff.dao.*" %>
+
 <%
 
 Boolean actionSuccess = false;
@@ -26,6 +24,17 @@ if(request.getAttribute("actionMsg")!=null){
 }
 
 %>
+
+
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chart.min.js"></script>
+	<script src="js/chart-data.js"></script>
+	<script src="js/easypiechart.js"></script>
+	<script src="js/easypiechart-data.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/bootstrap-table.js"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -42,7 +51,7 @@ if(request.getAttribute("actionMsg")!=null){
 					<li class="dropdown pull-right">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> User <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="Profile.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 						</ul>
@@ -59,52 +68,46 @@ if(request.getAttribute("actionMsg")!=null){
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">User Profile</li>
+				<li class="active">Item Category</li>
 			</ol>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">User Profile</h1>
+				<h1 class="page-header">Item Category</h1>
 			</div>
 			<div id="msgArea"></div>
 		</div><!--/.row-->
-			<div class="row">
+
+
+		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Add New Profile</div>
+					<div class="panel-heading">Add New Item Category</div>
 					<div class="panel-body">
-						<div class="col-md-8">
-							<form role="form" id="addProfileForm" action="./profileManagementServlet?action=add" method="post">
-
+						<div class="col-md-6">
+							<form role="form" id="addCategoryForm" action="./categoryManagementServlet?action=add" method="post">
 								<div class="form-group">
-									<label>Profile Name</label>
-									<input class="form-control" placeholder="Profile" name="addProfileName">
-								</div>
-
-								<div class="form-group">
-									<label>Profile Description</label>
-									<input class="form-control" name="addProfileDesc">
+									<label>Category Name</label>
+									<input class="form-control" name="addCategoryName">
 								</div>
 								<button type="submit" class="btn btn-primary">Add</button>
 								<button type="reset" class="btn btn-default">Cancel</button>
-
 						</form>
+						</div>
 					</div>
-				</div>
-			</div><!-- /.col-->
+				</div><!-- /.col-->
 
-				<div class="panel panel-default">
-					<div class="panel-heading">Profile Management</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">Item Category Management</div>
+				<div class="panel-body">
+					<div class="col-md-8">
 					<div class="panel-body">
-						<div class="col-md-8">
-					<div class="panel-body">
-						<table data-toggle="table" id="table-style" data-url="./reteriveProfileTable" data-row-style="rowStyle" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+						<table data-toggle="table" id="table-style" data-url="./reteriveCategoryTable" data-row-style="rowStyle" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 						    <thead>
 						    <tr>
-						        <th data-field="id" data-align="right" >Profile ID</th>
-						        <th data-field="name" >Profile Name</th>
-						        <th data-field="desc" >Profile Description</th>
+						        <th data-field="id" data-align="right" >Item ID</th>
+						        <th data-field="name" >Item Name</th>
 						        <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">Action</th>
 						    </tr>
 						    </thead>
@@ -140,14 +143,13 @@ if(request.getAttribute("actionMsg")!=null){
 						    }
 						</script>
 					</div>
+					</div>
 				</div>
-		</div>
-		</div>
-		</div>
-
+			</div>
+			</div>
 		</div><!-- /.row -->
-	</div><!--/.main-->
 
+	</div><!--/.main-->
 
 
 		<div id="popupModal1" class="modal fade"
@@ -160,21 +162,17 @@ if(request.getAttribute("actionMsg")!=null){
 
 					</div>
 					<div class="modal-body">
-						<div class="panel-heading">Edit Profile</div>
+						<div class="panel-heading">Edit Category</div>
 						<form id="editForm" role="form"
-							action="./profileManagementServlet?action=edit" method="post">
+							action="./categoryManagementServlet?action=edit" method="post">
 
 							<div class="form-group">
-								<label>Profile name</label> <input class="form-control"
-									placeholder="Profile Name" name="editProfileName" id="editProfileName" />
+								<label>Category name</label> <input class="form-control"
+									placeholder="Category Name" name="editCategoryName" id="editCategoryName" />
 							</div>
 
-							<div class="form-group">
-								<label>Profile Description</label> <input type="text"
-									class="form-control" name="editProfileDesc" id="editProfileDesc" />
-							</div>
 
-							<input type="hidden" name="editProfileId" id="editProfileId" />
+							<input type="hidden" name="editCategoryId" id="editCategoryId" />
 						</form>
 					</div>
 					<div class="modal-footer">
@@ -196,21 +194,16 @@ if(request.getAttribute("actionMsg")!=null){
 
 					</div>
 					<div class="modal-body">
-						<div class="panel-heading">Remove Profile</div>
+						<div class="panel-heading">Remove Category</div>
 						<form id="removeForm" role="form"
-							action="./profileManagementServlet?action=remove" method="post">
+							action="./categoryManagementServlet?action=remove" method="post">
 
 							<div class="form-group">
-								<label>Profile Name</label> <input class="form-control"
-									placeholder="Profile Name" name="removeProfileName" id="removeProfileName" readonly/>
+								<label>Category Name</label> <input class="form-control"
+									placeholder="Profile Name" name="removeCategoryName" id="removeCategoryName" readonly/>
 							</div>
 
-							<div class="form-group">
-								<label>Profile Description</label> <input class="form-control"
-									placeholder="Profile Description" name="removeProfileDesc" id="removeProfileDesc" readonly/>
-
-							</div>
-							<input type="hidden" name="removeProfileId" id="removeProfileId" />
+							<input type="hidden" name="removeCategoryId" id="removeCategoryId" />
 						</form>
 					</div>
 					<div class="modal-footer">
@@ -222,14 +215,6 @@ if(request.getAttribute("actionMsg")!=null){
 			</div>
 		</div>
 
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/chart.min.js"></script>
-	<script src="js/chart-data.js"></script>
-	<script src="js/easypiechart.js"></script>
-	<script src="js/easypiechart-data.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script src="js/bootstrap-table.js"></script>
 	<script>
 		!function ($) {
 			$(document).on("click","ul.nav li.parent > a > span.icon", function(){
@@ -245,7 +230,9 @@ if(request.getAttribute("actionMsg")!=null){
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
 
-		function operateFormatter(value, row, index) {
+
+
+				function operateFormatter(value, row, index) {
 	        return [
 	           ' <a class="btn bootpopup" title="">Edit</a>',
 	            '<a id="remove" class="remove ml10" title="Remove">Remove</a>'
@@ -267,9 +254,8 @@ if(request.getAttribute("actionMsg")!=null){
 		        	    //$('iframe').attr("src", frametarget );
 
 		        	});
-		        	$("#editProfileName").val(row.name);
-		        	$("#editProfileDesc").val(row.desc);
-		        	$("#editProfileId").val(row.id);
+		        	$("#editCategoryName").val(row.name);
+		        	$("#editCategoryId").val(row.id);
 		        	$(targetmodal).modal({show:true});
 		        	return false;
 		        },
@@ -288,9 +274,8 @@ if(request.getAttribute("actionMsg")!=null){
 		        	    //$('iframe').attr("src", frametarget );
 
 		        	});
-		        	$("#removeProfileName").val(row.name);
-		        	$("#removeProfileDesc").val(row.desc);
-		        	$("#removeProfileId").val(row.id);
+		        	$("#removeCategoryName").val(row.name);
+		        	$("#removeCategoryId").val(row.id);
 		        	$(targetmodal).modal({show:true});
 		        	return false;
 

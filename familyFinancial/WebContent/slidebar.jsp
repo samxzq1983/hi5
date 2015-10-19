@@ -22,29 +22,17 @@
 							<span class="glyphicon glyphicon-share-alt"></span> User Account
 						</a>
 					</li>
-
-				</ul>
-			</li>
-			<li class="parent ">
-				<a href="#">
-					<span class="glyphicon glyphicon-list"></span> Management <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
-				</a>
-				<ul class="children collapse" id="sub-item-2">
 					<li>
-						<a class="" href="Item.jsp">
+						<a class="" href="Category.jsp">
 							<span class="glyphicon glyphicon-share-alt"></span> Item Category
 						</a>
 					</li>
 					<li>
-						<a class="" href="Management.jsp">
-							<span class="glyphicon glyphicon-share-alt"></span> Records
+						<a class="" href="Items.jsp">
+							<span class="glyphicon glyphicon-share-alt"></span> Items
 						</a>
 					</li>
-					<li>
-						<a class="" href="Report.jsp">
-							<span class="glyphicon glyphicon-share-alt"></span> Report
-						</a>
-					</li>
+
 				</ul>
 			</li>
 		</ul>
