@@ -7,6 +7,12 @@
 		<ul class="nav menu">
 			<li ><a href="Home.jsp"><span class="glyphicon glyphicon-pencil"></span> Home</a></li>
 			<li ><a href="DataInput.jsp"><span class="glyphicon glyphicon-pencil"></span> Data Input</a></li>
+			<%
+			if(session.getAttribute("user")!=null){
+				User user = (User) session.getAttribute("user");
+				if(user.getProfileId() == 1){
+			%>
+
 			<li class="parent ">
 				<a href="#">
 					<span class="glyphicon glyphicon-list"></span> Admin  <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
@@ -35,5 +41,7 @@
 
 				</ul>
 			</li>
+			<%}
+				}%>
 		</ul>
 	</div><!--/.sidebar-->
