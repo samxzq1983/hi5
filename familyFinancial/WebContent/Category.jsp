@@ -53,8 +53,8 @@ if(request.getAttribute("actionMsg")!=null){
 			<div class="col-lg-12">
 				<h1 class="page-header">Item Category</h1>
 			</div>
-			<div id="msgArea"></div>
 		</div><!--/.row-->
+		<div id="msgArea"></div>
 
 
 		<div class="row">
@@ -263,12 +263,16 @@ if(request.getAttribute("actionMsg")!=null){
 		$(document).ready(function(){
 			<%if(actionMsg!=null){
 				if(actionSuccess){%>
-			$("#msgArea").html("<font color='green'><%=actionMsg%></font>");
-				<%}else{%>
-			$("#msgArea").html("<font color='red'><%=actionMsg%></font>");
+			$("#msgArea").html("<div class='alert bg-success' role='alert'><span class='glyphicon glyphicon-check'></span><%=actionMsg%><a href='javascript:clearMsgArea()' class='pull-right'><span class='glyphicon glyphicon-remove'></span></a></div>");
+				<%}else if(actionMsg!=""){%>
+			$("#msgArea").html("<div class='alert bg-danger' role='alert'><span class='glyphicon glyphicon-exclamation-sign'></span><%=actionMsg%><a href='javascript:clearMsgArea()' class='pull-right'><span class='glyphicon glyphicon-remove'></span></a></div>");
 				<%}
 			}%>
 		});
+
+		function clearMsgArea(){
+			$('#msgArea').html("");
+		}
 	</script>
 </body>
 </html>
