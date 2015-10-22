@@ -175,4 +175,40 @@ public class ItemDao {
 
 	}
 
+	public List<Item> getAllItemsByUser(int userId) {
+
+		List<Item> itemList = new ArrayList<Item>();
+		Connection conn = ConnectionFactory.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * from item where user_id=? order by item_id";
+		try{
+			Object[] args= {(Integer) userId};
+			pstmt = conn.prepareStatement(sql);
+			rs = SQLUtil.executePreparedQuery(pstmt, args);
+			while(rs.next()){
+				Item item = new Item();
+				item.setItemId(rs.getInt("item_id"));
+				item.setItemName(rs.getString("item_name"));
+				item.setItemPrice(rs.getDouble("item_price"));
+				item.setItemRemark(rs.getString("item_remark"));
+				item.setUserId(rs.getInt("user_id"));
+				item.setItemAddDate(rs.getDate("item_add_date"));
+				item.setCategoryId(rs.getInt("category_id"));
+
+				itemList.add(item);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			SQLUtil.closeResultSet(rs);
+			SQLUtil.closeStatement(pstmt);
+			SQLUtil.closeConnection(conn);
+		}
+		return itemList;
+
+
+	}
+
 }

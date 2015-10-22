@@ -28,6 +28,12 @@
   	<servlet-name>reteriveCategoryTable</servlet-name>
   	<servlet-class>com.hi5.ff.servlet.CategoryTableServlet</servlet-class>
   </servlet>
+
+  <servlet>
+  	<servlet-name>reteriveDataInputTable</servlet-name>
+  	<servlet-class>com.hi5.ff.servlet.DataInputTableServlet</servlet-class>
+  </servlet>
+
   <servlet>
   	<servlet-name>reteriveItemTable</servlet-name>
   	<servlet-class>com.hi5.ff.servlet.ItemTableServlet</servlet-class>
@@ -50,7 +56,10 @@
   	<servlet-class>com.hi5.ff.servlet.ItemManagementServlet</servlet-class>
   </servlet>
 
-  <servlet-mapping>
+  <servlet>
+    	<servlet-name>dataInputServlet</servlet-name>
+    	<servlet-class>com.hi5.ff.servlet.DataInputServlet</servlet-class>
+    </servlet><servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
@@ -75,7 +84,7 @@
         <url-pattern>/reteriveCategoryTable</url-pattern>
     </servlet-mapping>
 
-     <servlet-mapping>
+	<servlet-mapping>
         <servlet-name>reteriveItemTable</servlet-name>
         <url-pattern>/reteriveItemTable</url-pattern>
     </servlet-mapping>
@@ -97,6 +106,16 @@
     <servlet-mapping>
         <servlet-name>itemManagementServlet</servlet-name>
         <url-pattern>/itemManagementServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+    	<servlet-name>dataInputServlet</servlet-name>
+    	<url-pattern>/dataInputServlet</url-pattern>
+    </servlet-mapping>
+
+       <servlet-mapping>
+        <servlet-name>reteriveDataInputTable</servlet-name>
+        <url-pattern>/reteriveDataInputTable</url-pattern>
     </servlet-mapping>
 
 </web-app>
