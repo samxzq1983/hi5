@@ -128,7 +128,7 @@ if(request.getAttribute("actionMsg")!=null){
 					<div class="modal-body">
 						<div class="panel-heading">Edit Item</div>
 						<form id="editForm" role="form"
-							action="./itemManagementServlet?action=edit" method="post">
+							action="./dataInputServlet?action=edit" method="post">
 
 							<div class="form-group">
 								<label>Item Name</label> <input class="form-control"
@@ -180,7 +180,7 @@ if(request.getAttribute("actionMsg")!=null){
 					<div class="modal-body">
 						<div class="panel-heading">Remove Item</div>
 						<form id="removeForm" role="form"
-							action="./itemManagementServlet?action=remove" method="post">
+							action="./dataInputServlet?action=remove" method="post">
 
 							<div class="form-group">
 								<label>Item Name</label> <input class="form-control"

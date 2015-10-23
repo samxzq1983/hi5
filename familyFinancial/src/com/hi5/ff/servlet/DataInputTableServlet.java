@@ -31,8 +31,7 @@ public class DataInputTableServlet extends HttpServlet{
 			ItemDao itemDao = new ItemDao();
 			Object userObj = req.getSession().getAttribute("user");
 			if(userObj == null){
-				System.out.println("Can not find userObj in session");
-				throw new ServletException();
+				throw new ServletException("User Object not exist in session");
 			}
 			User user = (User) userObj;
 			List<Item> itemList = itemDao.getAllItemsByUser(user.getUserId());

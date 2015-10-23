@@ -63,7 +63,18 @@ public class DataInputServlet extends HttpServlet{
 			double itemPrice = req.getParameter("editItemPrice")!=null && req.getParameter("editItemPrice").trim().length()>0 ? Double.parseDouble(req.getParameter("editItemPrice")) : 0.00;
 			String itemRemark = req.getParameter("editItemRemark");
 			int categoryId = Integer.parseInt(req.getParameter("editCategoryId"));
-			int userId = Integer.parseInt(req.getParameter("editUserId"));
+			int userId = 0;
+			if(req.getParameter("editUserId")!=null)
+			{
+				userId= Integer.parseInt(req.getParameter("editUserId"));
+			}
+			else
+			{
+				UserDao userdao = new UserDao();
+				User user = new User();
+				user = (User)req.getSession(true).getAttribute("user");
+				userId = user.getUserId();
+			}
 			int itemId = Integer.parseInt(req.getParameter("editItemId"));
 
 			if(itemName!=null && itemName.trim().length()>0){
