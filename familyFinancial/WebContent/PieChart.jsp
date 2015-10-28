@@ -58,7 +58,6 @@
 				    highlight: colorHighlightArray[i%5],
 				    label: labelNames[i]
 				});
-				alert('Label = ' + labelNames[i] + '  Value = ' + values[i] + ' I = ' + i%5);
 			}
 		};
 
