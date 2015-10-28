@@ -27,7 +27,7 @@
 	CategoryDao categoryDao = null;
 	List<Category> categoryList = null;
 	String colourOptions[] = {"easypiechart-blue", "easypiechart-orange", "easypiechart-teal", "easypiechart-red"};
-	
+
 	try {
 		user = (User) request.getSession().getAttribute("user");
 		itemDao = new ItemDao();
@@ -36,10 +36,10 @@
 		categoryDao = new CategoryDao();
 		categoryList = categoryDao.getAllCategories();
 	}
-	
+
 	catch(NullPointerException npe) {%>
 		<jsp:forward page="Login.jsp" />
-<%		
+<%
 	}
 %>
 </head>
@@ -63,7 +63,7 @@
 				<h2>Total expenditure for <%= user.getUserName() %> in <%= currentMonth %>: S$<%= df.format(expenditure) %></h2>
 			</div>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<%
 				double categoryExpenditure = 0.00;
@@ -84,101 +84,10 @@
 					i = (i + 1) % 3;
 				}
 			%>
-			
-			
+
+
 		</div><!--/.row-->
 
-		<div class="row">
-			<!--<div class="col-md-8">
-
-			</div>/.col-->
-
-			<div class="col-md-8">
-
-				<div class="panel panel-blue">
-					<div class="panel-heading dark-overlay"><span class="glyphicon glyphicon-check"></span>plan list</div>
-					<div class="panel-body">
-						<ul class="todo-list">
-						<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox" />
-									<label for="checkbox">Make a plan for today</label>
-								</div>
-								<div class="pull-right action-buttons">
-									<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-									<a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-									<a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-								</div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox" />
-									<label for="checkbox">Update Basecamp</label>
-								</div>
-								<div class="pull-right action-buttons">
-									<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-									<a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-									<a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-								</div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox" />
-									<label for="checkbox">Send email to Jane</label>
-								</div>
-								<div class="pull-right action-buttons">
-									<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-									<a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-									<a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-								</div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox" />
-									<label for="checkbox">Drink coffee</label>
-								</div>
-								<div class="pull-right action-buttons">
-									<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-									<a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-									<a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-								</div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox" />
-									<label for="checkbox">Do some work</label>
-								</div>
-								<div class="pull-right action-buttons">
-									<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-									<a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-									<a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-								</div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox" />
-									<label for="checkbox">Tidy up workspace</label>
-								</div>
-								<div class="pull-right action-buttons">
-									<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-									<a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-									<a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div class="panel-footer">
-						<div class="input-group">
-							<input id="btn-input" type="text" class="form-control input-md" placeholder="Add new task" />
-							<span class="input-group-btn">
-								<button class="btn btn-primary btn-md" id="btn-todo">Add</button>
-							</span>
-						</div>
-					</div>
-				</div>
-
-			</div><!--/.col-->
-		</div><!--/.row-->
 	</div>	<!--/.main-->
 
 	<script src="js/jquery-1.11.1.min.js"></script>
