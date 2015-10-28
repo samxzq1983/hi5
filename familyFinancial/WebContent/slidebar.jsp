@@ -38,6 +38,11 @@
 							<span class="glyphicon glyphicon-share-alt"></span> Items
 						</a>
 					</li>
+					<li>
+						<a class="" href="Report.jsp">
+							<span class="glyphicon glyphicon-share-alt"></span> Report
+						</a>
+					</li>
 
 				</ul>
 			</li>

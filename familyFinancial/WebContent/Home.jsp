@@ -10,10 +10,38 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/datepicker3.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
+<%@ page session="true" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page import="com.hi5.ff.entity.*" %>
 <%@ page import="com.hi5.ff.dao.*" %>
-
+<%
+	User user = null;
+	Calendar cal = Calendar.getInstance();
+	DecimalFormat df = new DecimalFormat("#.00");
+	double expenditure = 0.00;
+	String currentMonth = "";
+	ItemDao itemDao = null;
+	CategoryDao categoryDao = null;
+	List<Category> categoryList = null;
+	String colourOptions[] = {"easypiechart-blue", "easypiechart-orange", "easypiechart-teal", "easypiechart-red"};
+	
+	try {
+		user = (User) request.getSession().getAttribute("user");
+		itemDao = new ItemDao();
+		currentMonth = cal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()) + " " + cal.get(Calendar.YEAR);
+		expenditure = itemDao.getUserExpenditureByMonth(user.getUserId(), cal.get(Calendar.MONTH) + 1);
+		categoryDao = new CategoryDao();
+		categoryList = categoryDao.getAllCategories();
+	}
+	
+	catch(NullPointerException npe) {%>
+		<jsp:forward page="Login.jsp" />
+<%		
+	}
+%>
 </head>
 
 <body>
@@ -32,103 +60,32 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Home</h1>
+				<h2>Total expenditure for <%= user.getUserName() %> in <%= currentMonth %>: S$<%= df.format(expenditure) %></h2>
 			</div>
 		</div><!--/.row-->
-
-
+		
 		<div class="row">
-			<div class="col-xs-12 col-md-6 col-lg-3">
-				<div class="panel panel-blue panel-widget ">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-							<em class="glyphicon glyphicon-shopping-cart glyphicon-l"></em>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">120</div>
-							<div class="text-muted">New Orders</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-md-6 col-lg-3">
-				<div class="panel panel-orange panel-widget">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-							<em class="glyphicon glyphicon-comment glyphicon-l"></em>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">52</div>
-							<div class="text-muted">Comments</div>
+			<%
+				double categoryExpenditure = 0.00;
+					int i = 0;
+					for(Category category:categoryList) {
+						categoryExpenditure = itemDao.getUserExpenditureByCategoryAndMonth(user.getUserId(), category.getCategoryId(), cal.get(Calendar.MONTH) + 1);
+			%>
+					<div class="col-xs-6 col-md-3">
+						<div class="panel panel-default">
+							<div class="panel-body easypiechart-panel">
+								<h4><%= category.getCategoryName() %></h4>
+								<div class="easypiechart" id="<%= colourOptions[i] %>" data-percent="<%= categoryExpenditure %>" ><span class="percent"><%= df.format(categoryExpenditure/expenditure*100) %>%</span>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-md-6 col-lg-3">
-				<div class="panel panel-teal panel-widget">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-							<em class="glyphicon glyphicon-user glyphicon-l"></em>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">24</div>
-							<div class="text-muted">New Users</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-md-6 col-lg-3">
-				<div class="panel panel-red panel-widget">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-							<em class="glyphicon glyphicon-stats glyphicon-l"></em>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">25.2k</div>
-							<div class="text-muted">Visitors</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-
-
-		<div class="row">
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>New Orders</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Comments</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>New Users</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Visitors</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%
+					i = (i + 1) % 3;
+				}
+			%>
+			
+			
 		</div><!--/.row-->
 
 		<div class="row">

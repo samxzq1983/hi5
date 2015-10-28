@@ -55,6 +55,10 @@
   	<servlet-name>itemManagementServlet</servlet-name>
   	<servlet-class>com.hi5.ff.servlet.ItemManagementServlet</servlet-class>
   </servlet>
+  <servlet>
+		<servlet-name>ReportServlet</servlet-name>
+		<servlet-class>com.hi5.ff.servlet.ReportServlet</servlet-class>
+  </servlet>
 
   <servlet>
     	<servlet-name>dataInputServlet</servlet-name>
@@ -107,7 +111,10 @@
         <servlet-name>itemManagementServlet</servlet-name>
         <url-pattern>/itemManagementServlet</url-pattern>
     </servlet-mapping>
-
+	<servlet-mapping>
+		<servlet-name>ReportServlet</servlet-name>
+		<url-pattern>/ReportServlet</url-pattern>
+	</servlet-mapping>
     <servlet-mapping>
     	<servlet-name>dataInputServlet</servlet-name>
     	<url-pattern>/dataInputServlet</url-pattern>
@@ -118,4 +125,74 @@
         <url-pattern>/reteriveDataInputTable</url-pattern>
     </servlet-mapping>
 
+ <servlet>
+    <description></description>
+    <display-name>BarChartServlet</display-name>
+    <servlet-name>BarChartServlet</servlet-name>
+    <servlet-class>com.hi5.ff.reports.BarChartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BarChartServlet</servlet-name>
+    <url-pattern>/barChart.jsp</url-pattern>
+  </servlet-mapping>
+  
+  
+      <servlet>
+    <description></description>
+    <display-name>LineChartServlet</display-name>
+    <servlet-name>LineChartServlet</servlet-name>
+    <servlet-class>com.hi5.ff.reports.LineChartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LineChartServlet</servlet-name>
+    <url-pattern>/lineChart.jsp</url-pattern>
+  </servlet-mapping>
+  
+  
+        <servlet>
+    <description></description>
+    <display-name>PieChartServlet</display-name>
+    <servlet-name>PieChartServlet</servlet-name>
+    <servlet-class>com.hi5.ff.reports.PieChartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PieChartServlet</servlet-name>
+    <url-pattern>/pieChart.jsp</url-pattern>
+  </servlet-mapping>
+  
+  
+          <servlet>
+    <description></description>
+    <display-name>PolarAreaChartServlet</display-name>
+    <servlet-name>PolarAreaChartServlet</servlet-name>
+    <servlet-class>com.hi5.ff.reports.PolarAreaChartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PolarAreaChartServlet</servlet-name>
+    <url-pattern>/polarAreaChart.jsp</url-pattern>
+  </servlet-mapping>
+  
+            <servlet>
+    <description></description>
+    <display-name>RadarChartServlet</display-name>
+    <servlet-name>RadarChartServlet</servlet-name>
+    <servlet-class>com.hi5.ff.reports.RadarChartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RadarChartServlet</servlet-name>
+    <url-pattern>/radarChart.jsp</url-pattern>
+  </servlet-mapping>
+  
+  
+              <servlet>
+    <description></description>
+    <display-name>DoughNutChartServlet</display-name>
+    <servlet-name>DoughNutChartServlet</servlet-name>
+    <servlet-class>com.hi5.ff.reports.DoughNutChartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoughNutChartServlet</servlet-name>
+    <url-pattern>/doughnutChart.jsp</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

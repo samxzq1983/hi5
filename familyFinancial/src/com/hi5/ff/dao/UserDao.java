@@ -14,7 +14,7 @@ import com.hi5.ff.entity.User;
 
 public class UserDao {
 
-	public User getUser(String userName, String password){
+	public User getUser(String userName, String password) {
 
 		User user = null;
 		Connection conn = ConnectionFactory.getConnection();
@@ -22,31 +22,35 @@ public class UserDao {
 		ResultSet rs = null;
 
 		String sql = "select * from user where user_name=? and user_password=?";
-		String[] args = {userName,password};
-		try{
+		String[] args = { userName, password };
+		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = SQLUtil.executePreparedQuery(pstmt, args);
-			if(rs.next()){
+			if (rs.next()) {
 				user = new User();
 				user.setUserId(rs.getInt("user_id"));
 				user.setProfileId(rs.getInt("profile_id"));
-				user.setUseName(rs.getString("user_name"));
+				user.setUserName(rs.getString("user_name"));
 				user.setPassword(rs.getString("user_password"));
 			}
-		}catch(SQLException ex){
+
+		}
+
+		catch (SQLException ex) {
 			ex.printStackTrace();
-		}finally{
+		}
+
+		finally {
 			SQLUtil.closeResultSet(rs);
 			SQLUtil.closeStatement(pstmt);
 			SQLUtil.closeConnection(conn);
 		}
-		return user;
 
+		return user;
 
 	}
 
-
-	public User getUser(int userId){
+	public User getUser(int userId) {
 
 		User user = null;
 		Connection conn = ConnectionFactory.getConnection();
@@ -54,58 +58,68 @@ public class UserDao {
 		ResultSet rs = null;
 
 		String sql = "select * from user where user_Id=?";
-		Object[] args = {userId};
-		try{
+		Object[] args = { userId };
+		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = SQLUtil.executePreparedQuery(pstmt, args);
-			if(rs.next()){
+			if (rs.next()) {
 				user = new User();
 				user.setUserId(rs.getInt("user_id"));
 				user.setProfileId(rs.getInt("profile_id"));
-				user.setUseName(rs.getString("user_name"));
+				user.setUserName(rs.getString("user_name"));
 				user.setPassword(rs.getString("user_password"));
 			}
-		}catch(SQLException ex){
+
+		}
+
+		catch (SQLException ex) {
 			ex.printStackTrace();
-		}finally{
+		}
+
+		finally {
 			SQLUtil.closeResultSet(rs);
 			SQLUtil.closeStatement(pstmt);
 			SQLUtil.closeConnection(conn);
 		}
-		return user;
 
+		return user;
 
 	}
 
-	public List<User> getAllUsers(){
+	public List<User> getAllUsers() {
 
 		List<User> userList = new ArrayList<User>();
 		Connection conn = ConnectionFactory.getConnection();
 		Statement stmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from user order by user_id";
-		try{
+		String sql = "SELECT * FROM USER order by USER_NAME";
+		try {
 			stmt = conn.createStatement();
-			rs =stmt.executeQuery(sql);
-			while(rs.next()){
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
 				User user = new User();
 				user.setUserId(rs.getInt("user_id"));
 				user.setProfileId(rs.getInt("profile_id"));
-				user.setUseName(rs.getString("user_name"));
+				user.setUserName(rs.getString("user_name"));
 				user.setPassword(rs.getString("user_password"));
 
 				userList.add(user);
 			}
-		}catch(SQLException e){
+
+		}
+
+		catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
+		}
+
+		finally {
 			SQLUtil.closeResultSet(rs);
 			SQLUtil.closeStatement(stmt);
 			SQLUtil.closeConnection(conn);
 		}
-		return userList;
 
+		return userList;
 
 	}
 
@@ -116,24 +130,26 @@ public class UserDao {
 		PreparedStatement pstmt = null;
 
 		String sql = "insert into user (user_name, profile_id, user_password) values (?,?,?)";
-		Object[] args= {newUser.getUseName(), (Integer) newUser.getProfileId(), newUser.getPassword()};
+		Object[] args = { newUser.getUserName(), (Integer) newUser.getProfileId(), newUser.getPassword() };
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			int r = SQLUtil.executeUpd(pstmt, args);
 
-		} catch (SQLException e) {
+		}
+
+		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			success =false;
-		}finally{
+			success = false;
+		}
+
+		finally {
 			SQLUtil.closeStatement(pstmt);
 			SQLUtil.closeConnection(conn);
 		}
 
 		return success;
-
-
 
 	}
 
@@ -144,27 +160,27 @@ public class UserDao {
 		PreparedStatement pstmt = null;
 
 		String sql = "update user set user_name=?, user_password=?,profile_id=? where user_id=?";
-		Object[] args= {existUser.getUseName(), existUser.getPassword(), (Integer) existUser.getProfileId(), existUser.getUserId()};
+		Object[] args = { existUser.getUserName(), existUser.getPassword(), (Integer) existUser.getProfileId(), existUser.getUserId() };
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			int r = SQLUtil.executeUpd(pstmt, args);
-			if(r!=1){
+			if (r != 1) {
 				success = false;
 			}
 
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			success =false;
-		}finally{
+			success = false;
+		}
+		finally {
 			SQLUtil.closeStatement(pstmt);
 			SQLUtil.closeConnection(conn);
 		}
 
 		return success;
-
-
 
 	}
 
@@ -175,27 +191,27 @@ public class UserDao {
 		PreparedStatement pstmt = null;
 
 		String sql = "delete from user where user_id=?";
-		Object[] args= {(Integer) userId};
+		Object[] args = { (Integer) userId };
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			int r = SQLUtil.executeUpd(pstmt, args);
-			if(r!=1){
+			if (r != 1) {
 				success = false;
 			}
 
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			success =false;
-		}finally{
+			success = false;
+		}
+		finally {
 			SQLUtil.closeStatement(pstmt);
 			SQLUtil.closeConnection(conn);
 		}
 
 		return success;
-
-
 
 	}
 

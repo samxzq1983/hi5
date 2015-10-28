@@ -119,7 +119,7 @@ public class UserManagementServlet extends HttpServlet{
 		User existUser = new User();
 
 		existUser.setUserId(userId);
-		existUser.setUseName(userName);
+		existUser.setUserName(userName);
 		existUser.setProfileId(profileId);
 		existUser.setPassword(password);
 
@@ -131,7 +131,7 @@ public class UserManagementServlet extends HttpServlet{
 		// TODO Auto-generated method stub
 		UserDao userDao = new UserDao();
 		User newUser = new User();
-		newUser.setUseName(userName);
+		newUser.setUserName(userName);
 		newUser.setProfileId(profileId);
 		newUser.setPassword(password);
 

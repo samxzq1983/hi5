@@ -95,7 +95,7 @@ if(request.getAttribute("actionMsg")!=null){
 										<%if(userList!=null){
 											for(User user:userList){
 										%>
-										<option value="<%=user.getUserId()%>"><%=user.getUseName() %></option>
+										<option value="<%=user.getUserId()%>"><%=user.getUserName() %></option>
 										<%	}
 										} %>
 									</select>
@@ -179,7 +179,7 @@ if(request.getAttribute("actionMsg")!=null){
 										<%if(userList!=null){
 											for(User user:userList){
 										%>
-										<option value="<%=user.getUserId()%>"><%=user.getUseName() %></option>
+										<option value="<%=user.getUserId()%>"><%=user.getUserName() %></option>
 										<%	}
 										} %>
 									</select>

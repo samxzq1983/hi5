@@ -35,7 +35,7 @@ public class JSONUtil {
 				userJson.put("id", user.getUserId());
 				userJson.put("profileId", user.getProfileId());
 				userJson.put("profileName", new ProfileDao().getProfileNameById(user.getProfileId()));
-				userJson.put("name", user.getUseName());
+				userJson.put("name", user.getUserName());
 				ja.put(userJson);
 			}
 		}else if(rawObj instanceof Profile){
@@ -97,7 +97,7 @@ public class JSONUtil {
 		UserDao userDao = new UserDao();
 		User user = userDao.getUser(userId);
 		if(user!=null){
-			userName =user.getUseName();
+			userName =user.getUserName();
 		}
 		return userName;
 	}
