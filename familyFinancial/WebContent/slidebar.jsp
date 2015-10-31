@@ -7,6 +7,9 @@
 		<ul class="nav menu">
 			<li ><a href="Home.jsp"><span class="glyphicon glyphicon-pencil"></span> Home</a></li>
 			<li ><a href="DataInput.jsp"><span class="glyphicon glyphicon-pencil"></span> Data Input</a></li>
+			<!-- begin second change 1/2 -->
+			<li ><a class="" href="Report.jsp"><span class="glyphicon glyphicon-share-alt"></span> Report</a></li>
+			<!-- end second change 1/2 -->
 			<%
 			if(session.getAttribute("user")!=null
 			&& session.getAttribute("isAdminUser")!=null
@@ -38,11 +41,13 @@
 							<span class="glyphicon glyphicon-share-alt"></span> Items
 						</a>
 					</li>
+					<!--  begin second change 2/2
 					<li>
 						<a class="" href="Report.jsp">
 							<span class="glyphicon glyphicon-share-alt"></span> Report
 						</a>
 					</li>
+					end second change 2/2-->
 
 				</ul>
 			</li>
