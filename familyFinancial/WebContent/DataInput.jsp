@@ -14,7 +14,7 @@
 <%@ page import="com.hi5.ff.entity.*" %>
 <%@ page import="com.hi5.ff.dao.*" %>
 <%
- 
+
 
 CategoryDao categoryDao = new CategoryDao();
 List<Category> categoryList = categoryDao.getAllCategories();
@@ -31,6 +31,19 @@ if(request.getAttribute("actionMsg")!=null){
 }
 
 %>
+
+
+                                <script>
+                                function isNumberKey(evt)
+                                {
+                                   var charCode = (evt.which) ? evt.which : evt.keyCode;
+                                   if (charCode != 46 && charCode > 31
+                                     && (charCode < 48 || charCode > 57))
+                                      return false;
+
+                                   return true;
+                                }
+                                </script>
 </head>
 <body>
 <%@include file="./navbar.jsp" %>
@@ -65,14 +78,14 @@ if(request.getAttribute("actionMsg")!=null){
 
 								<div class="form-group">
 									<label>Item Price</label>
-									<input class="form-control" placeholder="Item Price" name="addItemPrice" />
+									<input class="form-control" placeholder="Item Price" name="addItemPrice" onkeypress="return isNumberKey(event)"/>
 								</div>
 
 								<div class="form-group">
 									<label>Item Remark</label>
 									<input class="form-control" placeholder="Item Remark" name="addItemRemark" />
-								</div>														 
-							 
+								</div>
+
 								<div class="form-group">
 									<label>Category</label>
 									<select class="form-control" name="addCategroyId">
@@ -83,19 +96,19 @@ if(request.getAttribute("actionMsg")!=null){
 										<%	}
 										} %>
 									</select>
-								</div>								 
+								</div>
 								<button type="submit" class="btn btn-primary">Add</button>
-								<button type="reset" class="btn btn-default">Reset</button>						 
+								<button type="reset" class="btn btn-default">Reset</button>
 						</form>
 						</div>
-				</div>		
-				</div>				 								 				 
+				</div>
+				</div>
 			</div><!-- /.col-->
 		</div><!-- /.row -->
 		<div class="panel panel-default">
 					<div class="panel-heading">Items Management</div>
 					<div class="panel-body">
-						<table data-toggle="table" data-url="./reteriveDataInputTable"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+						<table data-toggle="table" data-url="./reteriveDataInputTable"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id" data-sort-order="desc">
 						    <thead>
 						    <tr>
 						        <th data-field="id" data-sortable="true">Item ID</th>
@@ -137,7 +150,7 @@ if(request.getAttribute("actionMsg")!=null){
 
 							<div class="form-group">
 									<label>Item Price</label>
-									<input class="form-control" placeholder="Item Price" name="editItemPrice" id="editItemPrice"/>
+									<input class="form-control" placeholder="Item Price" name="editItemPrice" id="editItemPrice" onkeypress="return isNumberKey(event)"/>
 								</div>
 
 								<div class="form-group">
@@ -155,7 +168,7 @@ if(request.getAttribute("actionMsg")!=null){
 										<%	}
 										} %>
 									</select>
-								</div>							
+								</div>
 							<input type="hidden" name="editItemId" id="editItemId" />
 						</form>
 					</div>
@@ -241,7 +254,7 @@ if(request.getAttribute("actionMsg")!=null){
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
-		
+
 		function operateFormatter(value, row, index) {
 	        return [
 	           ' <a class="btn bootpopup" title="">Edit</a>',

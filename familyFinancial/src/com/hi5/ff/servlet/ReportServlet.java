@@ -61,7 +61,7 @@ public class ReportServlet extends HttpServlet {
 				userName = userDao.getUser(userid).getUserName();
 
 			req.setAttribute("titleMsg", "Report for " + userName + " between " + startDateTokens[1] + " " + FFConstants.MONTH[Integer.parseInt(startDateTokens[0])] + " " + startDateTokens[2] + " and " + endDateTokens[1] + " " + FFConstants.MONTH[Integer.parseInt(endDateTokens[0])] + " " + endDateTokens[2]);
-
+           /*
 			switch(reportType) {
 				case("LINE"):
 					actionSuccess = doLineChart(userid, sqlStartDate, sqlEndDate, req);
@@ -77,6 +77,21 @@ public class ReportServlet extends HttpServlet {
 					reportPage = "BarChart.jsp";
 					break;
 			}
+			*/
+			//new start
+			if(reportType.equals("LINE")){
+				actionSuccess = doLineChart(userid, sqlStartDate, sqlEndDate, req);
+				reportPage = "LineChart.jsp";
+			}else if(reportType.equals("PIE")){
+				actionSuccess = doPieChart(userid, sqlStartDate, sqlEndDate, req);
+				reportPage = "PieChart.jsp";
+			}else if(reportType.equals("BAR")){
+				actionSuccess = doBarChart(userid, sqlStartDate, sqlEndDate, req);
+				reportPage = "BarChart.jsp";
+			}
+			
+			//new end
+			 
 
 		}
 

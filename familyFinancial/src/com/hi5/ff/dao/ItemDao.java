@@ -679,8 +679,8 @@ public List<CategoryExpenditure> getUserExpenditureByCategoryAndDurationForRepor
 							"select CATEGORY_id, item_price " +
 							"FROM hi5.ITEM i " +
 							//"WHERE USER_ID = 1 " +
-							"AND ITEM_ADD_DATE >= STR_TO_DATE('2015-10-24 00:00:01', '%Y-%m-%d %H:%i:%s') " +
-							"and ITEM_ADD_DATE <= STR_TO_DATE('2015-10-24 23:59:59', '%Y-%m-%d %H:%i:%s') " +
+							"WHERE ITEM_ADD_DATE >= STR_TO_DATE(?, '%Y-%m-%d %H:%i:%s') " +
+							"and ITEM_ADD_DATE <= STR_TO_DATE(?, '%Y-%m-%d %H:%i:%s') " +
 							"Union " +
 							"select CATEGORY_id, 0.0 item_price from category " +
 							") x " +

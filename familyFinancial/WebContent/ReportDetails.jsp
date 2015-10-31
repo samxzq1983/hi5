@@ -21,7 +21,17 @@ String reportType = (String) request.getSession().getAttribute("reportType");
 List<Category> categoryList = (List<Category>) request.getSession().getAttribute("categoryList");
 List<Item> itemList = (List<Item>) request.getSession().getAttribute("itemList");
 List<User> userList = (List<User>) request.getSession().getAttribute("userList"); %>
+                                <script>
+                                function isNumberKey(evt)
+                                {
+                                   var charCode = (evt.which) ? evt.which : evt.keyCode;
+                                   if (charCode != 46 && charCode > 31 
+                                     && (charCode < 48 || charCode > 57))
+                                      return false;
 
+                                   return true;
+                                }
+                                </script>
 </head>
 
 <body>
@@ -107,7 +117,7 @@ List<User> userList = (List<User>) request.getSession().getAttribute("userList")
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">×</button>
+						<button type="button" class="close" data-dismiss="modal">ï¿—</button>
 						<h3>Title</h3>
 
 					</div>
@@ -123,7 +133,7 @@ List<User> userList = (List<User>) request.getSession().getAttribute("userList")
 
 							<div class="form-group">
 									<label>Item Price</label>
-									<input class="form-control" placeholder="Item Price" name="editItemPrice" id="editItemPrice"/>
+									<input class="form-control" placeholder="Item Price" name="editItemPrice" id="editItemPrice"  onkeypress="return isNumberKey(event)"/>
 								</div>
 
 								<div class="form-group">
